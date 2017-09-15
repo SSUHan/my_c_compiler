@@ -16,7 +16,7 @@ typedef struct{
 }RET;
 
 char token = ' ';
-char target_string[] = "3+2*6$";
+char target_string[] = "302+22*6$";
 int cursor = 0;
 int max_len = -1;
 int is_debug = 1;
@@ -55,9 +55,15 @@ void get_token(){
 	}else if(here == '$'){
 		token = END;
 		nice_end();
-	}else if((here > '0') && (here < '9')){
+	}else if((here >= '0') && (here <= '9')){
 		token = NUMBER;
-		num = here - '0';
+		num = here - '0'; // because of ascii type
+		while((target_string[cursor+1] >= '0') && (target_string[cursor+1] <='9')){
+			num = num*10;
+			cursor++;
+			here = target_string[cursor];
+			num += here - '0';
+		}
 	}else{
 		error(cursor);
 	}
