@@ -1,5 +1,7 @@
 /*
 Syntax Analytics : only detected error from potential sentense
++
+Calculator for "Integer" Operation
 */
 
 #include <stdio.h>
@@ -19,17 +21,19 @@ int cursor = 0;
 int max_len = -1;
 int is_debug = 1;
 
+int num = 0;
 
-void term();
-void factor();
-void expression();
+
+int term();
+int factor();
+int expression();
 void error(int);
 void nice_end();
 void do_debug();
 
 void nice_end(){
 	printf("This sentense end\n");
-	exit(0);
+	// exit(0);
 }
 
 void get_token(){
@@ -53,6 +57,7 @@ void get_token(){
 		nice_end();
 	}else if((here > '0') && (here < '9')){
 		token = NUMBER;
+		num = here - '0';
 	}else{
 		error(cursor);
 	}
@@ -62,35 +67,39 @@ void get_token(){
 	
 }
 
-void expression(){
+int expression(){
 	// t + t + t ...
 	// 이 작업을 하기 전에 이미 get_token() 수행하여, token 값이 채워져 있다고 가정
-	term();
+	int n = term();
 	while(token == PLUS){
 		get_token();
-		term();
+		n += term();
 	}
+	return n;
 
 	// 이 작업이 끝나기 전에 다음 token 값을 읽어서 넘김
 }
 
-void term(){
+int term(){
 	// f * f * f ...
-	factor();
+	int n = factor();
 	while(token == STAR){
 		get_token();
-		factor();
+		n *= factor();
 	}
+	return n;
 }
 
-void factor(){
+int factor(){
 	// n | (expression)
+	int n = 0;
 	if(token == NUMBER){
+		n = num;
 		get_token();
 	}
 	else if(token == LPAREN){
 		get_token();
-		expression();
+		n = expression();
 		if(token == RPAREN){
 			get_token();
 		}else{
@@ -99,6 +108,7 @@ void factor(){
 	}else{
 		error(cursor);
 	}
+	return n;
 }
 
 void error(int i){
@@ -134,7 +144,13 @@ int main(){
 	printf("cursor : %d,  max length : %u\n", cursor, max_len);
 	
 	get_token(); // read start symbol
-	expression(); // start symbol
+	int answer = 0;
+	answer = expression(); // start symbol
+	if(token != END){
+		error(cursor);
+	}else{
+		printf("Total Answer is %d\n", answer);
+	}
 	
 	return 0;
 }
