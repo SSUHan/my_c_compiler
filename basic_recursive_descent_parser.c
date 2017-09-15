@@ -14,7 +14,7 @@ typedef struct{
 }RET;
 
 char token = ' ';
-char target_string[] = "3+2*6$";
+char target_string[] = "3+2*+6$";
 int cursor = 0;
 int max_len = -1;
 int is_debug = 1;
@@ -101,7 +101,19 @@ void factor(){
 }
 
 void error(int i){
-	printf("you get error! at %d\n", i);
+	
+	printf("\n\n");
+	printf("\t\t%s\n", target_string);
+	int t = 0;
+	printf("\t\t");
+	for(t=0; t<i-1 ;t++){
+		printf("%c", ' ');
+	}
+	printf("%c\n", '^');
+	printf("\n");
+	printf("you get error! at position : %d\tvalue : %c\n", i-1, target_string[i-1]);
+	printf("\n");
+	exit(0);
 }
 
 void do_debug(){
