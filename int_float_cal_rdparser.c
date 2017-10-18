@@ -21,15 +21,15 @@ typedef struct{
 }RET;
 
 char token = ' ';
-char target_string[] = "2.54*(6+4)$";
-int cursor = 0;
-int max_len = -1;
-int is_debug = 0;
+char target_string[] = "2.54*+(6+4)$"; 
+int cursor = 0; // target string 서 읽어들이는 커서 위치값
+int max_len = -1; // Target String 의 길이
+int is_debug = 0; // Debug message 출력 여부
 
-int num = 0;
-int float_flag = 0;
-int floating_size = 0;
-float f_num = 0.0;
+int num = 0; // 정수타입 계산값
+int float_flag = 0; // 실수 여부 판단('.')
+int floating_size = 0; // 실수의 아랫위치값
+float f_num = 0.0; // 실수타입 계산값
 
 RET glb_ret;
 
