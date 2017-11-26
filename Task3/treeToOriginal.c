@@ -1,11 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 #include "type.h"
 
 void statement(A_NODE *node);
 void statement_list(A_NODE *node);
 void expression(A_NODE *node);
-void prt_for_expression(A_NODE *node);
+void prt_expression(A_NODE *node);
+void for_expression(A_NODE *node);
 
 void statement(A_NODE *node) {
 	switch (node->name){
@@ -98,7 +99,7 @@ void statement_list(A_NODE *node){
 	}
 }
 
-void prt_for_expression(A_NODE *node) {
+void prt_expression(A_NODE *node) {
 	switch (node->name) {
 		case N_FOR_EXP:
 			if(node->llink)
@@ -113,6 +114,14 @@ void prt_for_expression(A_NODE *node) {
 	}
 }	
 
+void for_expression(A_NODE *node){
+	printf("[For Expression]");
+}
+
 void expression(A_NODE *node){
 	printf("[Expression]");
+}
+
+void A_ID_LIST(A_NODE *node){
+	printf("[A_ID_LIST]");
 }
