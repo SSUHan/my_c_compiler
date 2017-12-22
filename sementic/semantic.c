@@ -669,6 +669,7 @@ int sem_A_TYPE(A_TYPE *t)
 				result = i;
 				id = id->link;
 			}
+		}
 		break;
 	case T_FUNC:
 		tt = t->element_type;
