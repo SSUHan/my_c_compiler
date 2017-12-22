@@ -1,5 +1,5 @@
-//#include <stdio.h>
-//#include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "type.h"
 
 void rvt_statement(A_NODE *node);
@@ -89,8 +89,11 @@ void rvt_statement(A_NODE *node) {
 }
 
 void rvt_statement_list(A_NODE *node){
+	printf("rvt_statement_list\n");
 	switch (node->name) {
+		printf("%d\n", node->name);
 		case N_STMT_LIST:
+			printf("N_STMT_LIST");
 			rvt_statement(node->llink);
 			rvt_statement_list(node->rlink);
 			break;
