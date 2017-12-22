@@ -717,7 +717,7 @@ int sem_declaration_list(A_ID *id, int addr)
 // check declaration (identifier), set address, and return its size
 int sem_declaration(A_ID *id,int addr)
 {
-	printf(">> sem_declaration\n");
+	printf(">> sem_declaration %s\n", id->name);
 	A_TYPE *t;
 	int size = 0, i;
 	A_LITERAL lit;
