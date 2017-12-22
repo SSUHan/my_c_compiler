@@ -723,6 +723,7 @@ int sem_declaration(A_ID *id,int addr)
 	A_LITERAL lit;
 	switch (id->kind) {
 	case ID_VAR:
+		printf(">>>> ID_VAR\n");
 		i = sem_A_TYPE(id->type);
 		// check empty array
 		if(isArrayType(id->type) && id->type->expr==NIL)
@@ -741,6 +742,7 @@ int sem_declaration(A_ID *id,int addr)
 		}
 		break;
 	case ID_FIELD:
+		printf(">>>> ID_FIELD\n");
 		i = sem_A_TYPE(id->type);
 		if (isFunctionType(id->type)
 			|| isVoidType(id->type))
@@ -751,9 +753,11 @@ int sem_declaration(A_ID *id,int addr)
 		size = i;
 		break;
 	case ID_FUNC:
+		printf(">>>> ID_FUNC\n");
 		i = sem_A_TYPE(id->type);
 		break;
 	case ID_PARM:
+		printf(">>>> ID_PARM\n");
 		if (id->type) {
 			size = sem_A_TYPE(id->type);
 			// usual unary conversion of parm type
@@ -776,6 +780,7 @@ int sem_declaration(A_ID *id,int addr)
 		}
 		break;
 	case ID_TYPE:
+		printf(">>>> ID_TYPE\n");
 		i = sem_A_TYPE(id->type);
 		break;
 	default:
