@@ -67,6 +67,7 @@ int literal_size = 0;
 
 void semantic_analysis(A_NODE *node)
 {
+	printf(">> semantic_analysis\n");
 	sem_program(node);
 	set_literal_address(node);
 }
@@ -82,6 +83,7 @@ void set_literal_address(A_NODE *node)
 
 void sem_program(A_NODE *node)
 {
+	printf(">> sem_program\n");
 	int i;
 	switch(node->name) {
 	case N_PROGRAM :
@@ -96,6 +98,7 @@ void sem_program(A_NODE *node)
 
 int put_literal(A_LITERAL lit, int ll)
 {
+	printf(">> put_literal\n");
 	float ff;
 	if (literal_no >=LIT_MAX)
 		semantic_error(93, ll);
@@ -114,6 +117,7 @@ int put_literal(A_LITERAL lit, int ll)
 
 A_TYPE *sem_expression(A_NODE *node)
 {
+	printf(">> sem_expression\n");
 	A_TYPE *result = NIL, *t, *t1, *t2;
 	A_ID *id;
 	A_LITERAL lit;
@@ -612,6 +616,7 @@ int sem_statement_list(A_NODE *node, int addr, A_TYPE *ret, BOOLEAN sw, BOOLEAN 
 // check type and return its size (size of incomplete type is 0)
 int sem_A_TYPE(A_TYPE *t)
 {
+	printf(">> sem_A_TYPE\n")
 	A_ID *id;
 	A_TYPE *tt;
 	A_LITERAL lit;
@@ -700,6 +705,7 @@ int sem_A_TYPE(A_TYPE *t)
 // set variable address in declaration-list, and return its total variable size
 int sem_declaration_list(A_ID *id, int addr)
 {
+	printf(">> sem_declaration_list\n")
 	int i = addr;
 	while (id) {
 		addr += sem_declaration(id,addr);
@@ -711,6 +717,7 @@ int sem_declaration_list(A_ID *id, int addr)
 // check declaration (identifier), set address, and return its size
 int sem_declaration(A_ID *id,int addr)
 {
+	printf(">> sem_declaration\n")
 	A_TYPE *t;
 	int size = 0, i;
 	A_LITERAL lit;
