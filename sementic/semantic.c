@@ -73,6 +73,7 @@ void semantic_analysis(A_NODE *node)
 
 void set_literal_address(A_NODE *node)
 {
+	printf(">> set_literal_address\n");
 	int i;
 	for (i=1;i<=literal_no; i++)
 		literal_table[i].addr += node->value;
