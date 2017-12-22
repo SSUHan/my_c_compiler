@@ -1,4 +1,5 @@
 #include <stdio.h> 
+#include <stdlib.h>
 #include <string.h>
 #include "type.h"
 typedef enum op {OP_NULL, LOD,LDX,LDXB, LDA, LITI,
