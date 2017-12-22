@@ -55,12 +55,12 @@ void main(int argc, char *argv[])
 	semantic_analysis(root);
 	if (semantic_err) 
 		exit(1);
-	
+
 	//print_sem_ast(root);
-	/*
+	
 	printf("start code generation\n");
 	code_generation(root);
 	printf("end code generation\n");
-	*/
+
 	exit(0);
 }
